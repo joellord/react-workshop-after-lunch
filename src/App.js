@@ -6,6 +6,7 @@ import Callback from "./components/Callback";
 import Unauthorized from "./components/Unauthorized";
 import TitleBar from "./components/TitleBar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute";
 
 class App extends Component {
   render() {
@@ -15,7 +16,7 @@ class App extends Component {
             <TitleBar/>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/weather" component={Weather} />
+              <PrivateRoute path="/weather" component={Weather} />
               <Route path="/callback" component={Callback} />
               <Route path="/unauthorized" component={Unauthorized} />
             </Switch>
