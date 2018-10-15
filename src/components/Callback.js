@@ -1,6 +1,15 @@
 import React, { Component } from "react";
+import Auth from "../utils/Auth";
+import { withRouter } from "react-router-dom";
 
-export default class Callback extends Component {
+class Callback extends Component {
+  componentWillMount() {
+    let auth = new Auth();
+    auth.handleAuth(() => {
+      this.props.history.push("/weather");
+    });
+  }
+
   render() {
     return (
       <div>
@@ -9,3 +18,5 @@ export default class Callback extends Component {
     )
   }
 }
+
+export default withRouter(Callback);

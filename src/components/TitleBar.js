@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Auth from "../utils/Auth";
 
 export default class TitleBar extends Component {
+  login() {
+    let auth = new Auth();
+    auth.login();
+  }
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -18,7 +23,7 @@ export default class TitleBar extends Component {
 
           </ul>
           <form className="form-inline my-2 my-lg-0">
-            <button type="button">Login</button>
+            <button type="button" onClick={this.login}>Login</button>
           </form>
         </div>
       </nav>
