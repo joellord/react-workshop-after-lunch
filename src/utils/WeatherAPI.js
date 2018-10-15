@@ -1,3 +1,5 @@
+import store from "./Store";
+
 const data = {
   "city": {
     "id": 6167865,
@@ -82,10 +84,14 @@ const data = {
 };
 
 const getWeatherData = () => {
-  let p = new Promise(function(resolve) {
-    setTimeout(() => resolve(data), 1800);
-  });
-  return p;
+  // let p = new Promise(function(resolve) {
+  //   setTimeout(() => resolve(data), 1800);
+  // });
+  // return p;
+
+  setTimeout(() => {
+    store.updateGlobalState(data);
+  }, 1000)
 };
 
 export {

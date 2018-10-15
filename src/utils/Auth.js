@@ -1,6 +1,7 @@
 // src/Auth/Auth.js
 
 import auth0 from 'auth0-js';
+import store from "./Store";
 
 export default class Auth {
   auth0 = new auth0.WebAuth({
@@ -35,6 +36,7 @@ export default class Auth {
       expiresAt: expiresAt
     };
     localStorage.setItem("tokens", JSON.stringify(tokens));
+    store.updateGlobalState({isLoggedIn: true});
   }
 
   isAuthenticated() {
@@ -45,5 +47,6 @@ export default class Auth {
 
   logout() {
     localStorage.removeItem("tokens");
+    store.updateGlobalState({isLoggedIn: false});
   }
 }
