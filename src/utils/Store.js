@@ -3,7 +3,7 @@ import Emitter from "es6-event-emitter";
 let state = {};
 
 let initialState = {
-  isLoggedIn: true,
+  isLoggedIn: false,
   city: {
     name: "---"
   },
