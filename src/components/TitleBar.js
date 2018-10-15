@@ -1,18 +1,23 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Auth from "../utils/Auth";
 import store from "../utils/Store";
 
-export default class TitleBar extends Component {
+class TitleBar extends Component {
   constructor(props) {
     super(props);
 
     this.state = store.getGlobalState();
     this.updateState = this.updateState.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   componentWillMount() {
     store.subscribe(this.updateState);
+    let auth = new Auth();
+    if (auth.isAuthenticated() && !this.state.isLoggedIn) {
+      store.updateGlobalState({isLoggedIn: true});
+    }
   }
 
   componentWillUnmount() {
@@ -26,6 +31,7 @@ export default class TitleBar extends Component {
   logout() {
     let auth = new Auth();
     auth.logout();
+    this.props.history.push("/");
   }
 
   login() {
@@ -60,3 +66,5 @@ export default class TitleBar extends Component {
     )
   }
 }
+
+export default withRouter(TitleBar);
