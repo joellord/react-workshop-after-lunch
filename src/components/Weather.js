@@ -32,14 +32,14 @@ export default class Weather extends Component {
   render() {
     let firstThree = this.state.list.slice(1,4).map(data => {
       return (
-        <div className="col-4">
+        <div className="col-4" key={data.dt}>
           <SmallWeatherWidget {...data}/>
         </div>
       )
     });
     let lastThree = this.state.list.slice(4,7).map(data => {
       return (
-        <div className="col-4">
+        <div className="col-4" key={data.dt}>
           <SmallWeatherWidget {...data}/>
         </div>
       )
